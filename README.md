@@ -1,24 +1,15 @@
-# RedwoodSDK Minimal Starter
+# redwood-minimal
+based on redwoodjs/sdk/starters/minimal
 
-This starter gives you a bare-bones RedwoodSDK project.
-
-Create your new project:
-
-```shell
-npx degit redwoodjs/sdk/starters/minimal my-project-name
-cd my-project-name
-pnpm install
+### scripts
+```
+dev: vite dev,
+build: vite build,
+preview: vite preview,
+ship: wrangler deploy,
+types: wrangler types --include-runtime false
 ```
 
-## Running the dev server
-
-```shell
-pnpm dev
-```
-
-Point your browser to the URL displayed in the terminal (e.g. `http://localhost:5173/`). You should see a "Hello World" message in your browser.
-
-## Further Reading
-
+### Further Reading
 - [RedwoodSDK Documentation](https://docs.rwsdk.com/)
 - [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers)
