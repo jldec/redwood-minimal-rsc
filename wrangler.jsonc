@@ -11,6 +11,5 @@
     "enabled": true
   },
   "vars": {
-    "PNPM_VERSION": "10"
   }
 }
