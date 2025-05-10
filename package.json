@@ -34,5 +34,6 @@
     "tabWidth": 2,
     "useTabs": false,
     "singleQuote": true
-  }
+  },
+  "packageManager": "pnpm@10"
 }
