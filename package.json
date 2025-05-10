@@ -35,5 +35,5 @@
     "useTabs": false,
     "singleQuote": true
   },
-  "packageManager": "pnpm@10"
+  "packageManager": "pnpm@10.10.0"
 }
