@@ -49,7 +49,7 @@ export function ClientTimeButton() {
 ```
 
 ### ServerTimeButton
-A button that calls a server function to fetch the current time.
+A button that calls a server function to fetch the current time, or fetches from `/api/time` if the `callFetch` prop is set.
 ```tsx
 // src/app/pages/ServerTimeButton.tsx
 'use client'
@@ -57,11 +57,18 @@ A button that calls a server function to fetch the current time.
 import { useState } from 'react'
 import { serverTime } from './ServerTime'
 
-export function ServerTimeButton() {
-  const [val, setVal] = useState('Call serverTime() server function')
+export function ServerTimeButton({ callFetch = false }) {
+  const label = callFetch ? 'fetch /api/time' : 'Call serverTime() server function'
+  const [val, setVal] = useState(label)
 
   async function handleClick() {
-    setVal(`serverTime(): ${await serverTime()}`)
+    if (callFetch) {
+      const res = await fetch('/api/time')
+      const text = await res.text()
+      setVal(`fetch /api/time: ${text}`)
+    } else {
+      setVal(`serverTime(): ${await serverTime()}`)
+    }
   }
 
   return (
@@ -74,6 +81,8 @@ export function ServerTimeButton() {
   )
 }
 ```
+
+- The `callFetch` prop (default `false`) determines whether the button calls the server function directly or fetches from `/api/time`.
 
 ### ServerTime
 A RSC (React Server Component) that displays the current time. This is rendered as part of the initial page load, and re-rendered when the server function above is called.
