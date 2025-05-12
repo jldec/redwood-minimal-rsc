@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { serverTime } from './ServerTime'
 
 export function ServerTimeButton() {
-  const [val, setVal] = useState('serverTime() server function')
+  const [val, setVal] = useState('Call serverTime() server function')
 
   async function handleClick() {
     setVal(`serverTime(): ${await serverTime()}`)
