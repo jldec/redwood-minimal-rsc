@@ -78,7 +78,7 @@ export function ServerTimeButton() {
 ### ServerTime
 A RSC (React Server Component) that displays the current time. This is rendered as part of the initial page load, and re-rendered when the server function above is called.
 
-- `'use server'` in `serverTime()` makes the server function callable from the client.
+- `'use server'` in `serverTime()` makes the server function callable via fetch from the client.
 - `ServerTime()` (with uppercase 'S') is the server component.
 
 ```tsx
