@@ -87,7 +87,7 @@ export function ServerTimeButton({ callFetch = false }) {
 ```
 
 ### ServerTime
-`ServerTime()` (with uppercase 'S') is a RSC (React Server Component) that displays the time. This is rendered as part of the initial page load, and re-rendered when serverTime() from the client.
+`ServerTime()` (with uppercase 'S') is a RSC (React Server Component) that displays the time. This is rendered as part of the initial page load, and re-rendered when serverTime() is called by the client.
 
 NOTE: `'use server'` makes serverTime() callable via XHR fetch from the client.
 
