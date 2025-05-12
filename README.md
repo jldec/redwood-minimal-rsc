@@ -1,8 +1,9 @@
 # RedwoodSDK minimal RSC demo
-First steps using React Server Components with [RedwoodSDK](https://rwsdk.com/).  
-Deployed at https://redwood-minimal-rsc.jldec.workers.dev/
+First steps using React Server Components with [RedwoodSDK](https://rwsdk.com/).
 
-<img width="800" alt="Screenshot 2025-05-12 at 14 07 27" src="https://github.com/user-attachments/assets/7134288f-3dcc-48b7-a00b-569c0539bd77" />
+#### Deployed at https://redwood-minimal-rsc.jldec.workers.dev/
+
+<img width="449" alt="Screenshot 2025-05-12 at 14 07 27" src="https://github.com/user-attachments/assets/aa9aba9f-1fc7-49e7-a23c-8c55afbad65c" />
 
 ### Clock
 Live-updating clock rendered on the client.
