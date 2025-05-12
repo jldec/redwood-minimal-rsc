@@ -4,14 +4,14 @@ import { time } from '@/lib/utils'
 import { useState, useEffect } from 'react'
 
 export function Clock() {
-  const [val, setVal] = useState('Client Clock')
+  const [val, setVal] = useState('Clock')
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setVal(`Client Clock: ${time()}`)
+      setVal(`Clock: ${time()}`)
     }, 1000)
     return () => clearInterval(interval)
   }, [])
 
-  return <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">{val}</div>
+  return <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-sm font-mono text-center">{val}</div>
 }
