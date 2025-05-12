@@ -3,11 +3,18 @@
 import { useState } from 'react'
 import { serverTime } from './ServerTime'
 
-export function ServerTimeButton() {
-  const [val, setVal] = useState('Call serverTime() server function')
+export function ServerTimeButton({ callFetch = false }) {
+  const label = callFetch ? 'fetch /api/time' : 'Call serverTime() server function'
+  const [val, setVal] = useState(label)
 
   async function handleClick() {
-    setVal(`serverTime(): ${await serverTime()}`)
+    if (callFetch) {
+      const res = await fetch('/api/time')
+      const text = await res.text()
+      setVal(`fetch /api/time: ${text}`)
+    } else {
+      setVal(`serverTime(): ${await serverTime()}`)
+    }
   }
 
   return (
