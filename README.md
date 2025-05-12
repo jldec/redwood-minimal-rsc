@@ -1,8 +1,10 @@
 # RedwoodSDK minimal RSC demo
+First steps using React Server Components with [RedwoodSDK](https://rwsdk.com/).
+
 https://redwood-minimal-rsc.jldec.workers.dev/
 
 ### Clock
-A live-updating clock rendered on the client. It uses a React effect to update every second.
+Live-updating clock rendered on the client.
 ```tsx
 // src/app/pages/Clock.tsx
 'use client'
@@ -25,7 +27,7 @@ export function Clock() {
 ```
 
 ### ClientTimeButton
-A button that displays the current time using a client-side function.
+Calls client-side function to display the time.
 ```tsx
 // src/app/pages/ClientTimeButton.tsx
 'use client'
@@ -49,7 +51,7 @@ export function ClientTimeButton() {
 ```
 
 ### ServerTimeButton
-A button that calls a server function to fetch the current time, or fetches from `/api/time` if the `callFetch` prop is set.
+Calls server function, or fetches from `/api/time` if the `callFetch` prop is set.
 ```tsx
 // src/app/pages/ServerTimeButton.tsx
 'use client'
@@ -82,13 +84,10 @@ export function ServerTimeButton({ callFetch = false }) {
 }
 ```
 
-- The `callFetch` prop (default `false`) determines whether the button calls the server function directly or fetches from `/api/time`.
-
 ### ServerTime
-A RSC (React Server Component) that displays the current time. This is rendered as part of the initial page load, and re-rendered when the server function above is called.
+`ServerTime()` (with uppercase 'S') is a RSC (React Server Component) that displays the time. This is rendered as part of the initial page load, and re-rendered when serverTime() from the client.
 
-- `'use server'` in `serverTime()` makes the server function callable via fetch from the client.
-- `ServerTime()` (with uppercase 'S') is the server component.
+NOTE: `'use server'` makes serverTime() callable via XHR fetch from the client.
 
 ```tsx
 // src/app/pages/ServerTime.tsx
@@ -109,7 +108,7 @@ export async function ServerTime() {
 ```
 
 **Shared Utility:**
-All four components use the same utility to get the formatted time:
+Components share the time function to get the formatted time.
 ```ts
 // src/lib/utils.ts
 export function formatTime(d: Date) {
