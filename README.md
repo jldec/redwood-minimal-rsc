@@ -3,7 +3,7 @@ First steps using React Server Components with [RedwoodSDK](https://rwsdk.com/).
 
 #### Deployed at https://redwood-minimal-rsc.jldec.workers.dev/
 
-<img width="449" alt="Screenshot 2025-05-12 at 14 07 27" src="https://github.com/user-attachments/assets/aa9aba9f-1fc7-49e7-a23c-8c55afbad65c" />
+[<img width="449" alt="Screenshot 2025-05-12 at 14 07 27" src="https://github.com/user-attachments/assets/aa9aba9f-1fc7-49e7-a23c-8c55afbad65c" />](https://redwood-minimal-rsc.jldec.workers.dev/)
 
 ### Clock
 Live-updating clock rendered on the client.
