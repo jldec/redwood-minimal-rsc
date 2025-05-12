@@ -1,11 +1,7 @@
 {
-  "name": "@redwoodjs/starter-minimal",
+  "name": "redwood-minimal-rsc",
   "version": "1.0.0",
-  "description": "A bare-bones RedwoodSDK starter",
-  "main": "index.js",
   "type": "module",
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "private": true,
   "scripts": {
