@@ -69,7 +69,6 @@ export async function serverTime() {
 ### ServerTimeButton
 Calls server function, or fetches from `/api/time` if the `callFetch` prop is set.
 ```tsx
-// src/app/pages/ServerTimeButton.tsx
 'use client'
 
 import { useState } from 'react'
@@ -85,9 +84,7 @@ export function ServerTimeButton({ callFetch = false }) {
       const text = await res.text()
       setVal(`fetch /api/time: ${text}`)
     } else {
-      // realtime returns { node, actionResult } object
-      // @ts-ignore
-      setVal(`serverTime(): ${(await serverTime()).actionResult}`)
+      setVal(`serverTime(): ${await serverTime()}`)
     }
   }
 
