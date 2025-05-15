@@ -7,5 +7,19 @@
   "observability": {
     "enabled": true
   },
-  "vars": {}
+  "vars": {},
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "REALTIME_DURABLE_OBJECT",
+        "class_name": "RealtimeDurableObject"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["RealtimeDurableObject"]
+    }
+  ]
 }

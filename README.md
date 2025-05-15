@@ -85,7 +85,9 @@ export function ServerTimeButton({ callFetch = false }) {
       const text = await res.text()
       setVal(`fetch /api/time: ${text}`)
     } else {
-      setVal(`serverTime(): ${await serverTime()}`)
+      // realtime returns { node, actionResult } object
+      // @ts-ignore
+      setVal(`serverTime(): ${(await serverTime()).actionResult}`)
     }
   }
 
@@ -114,6 +116,76 @@ export async function ServerTime() {
     </div>
   )
 }
+```
+
+### BumpServerButton
+This button simulates a realtime update from the server by fetching /api/bump.
+
+```tsx
+'use client'
+
+import { useState } from 'react'
+
+export function BumpServerButton() {
+  const [val, setVal] = useState('fetch /api/bump')
+
+  async function handleClick() {
+      const res = await fetch('/api/bump')
+      const text = await res.text()
+      setVal(`fetch /api/bump: ${text}`)
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      className="border-gray-300 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-xs font-mono"
+    >
+      {val}
+    </button>
+  )
+}
+```
+
+### Realtime RSC updates
+Add RedwoodSDK support for realtime updates using Cloudflare Durable Objects and WebSockets. See https://docs.rwsdk.com/core/realtime/
+
+
+**client.tsx**
+```tsx
+import { initRealtimeClient } from 'rwsdk/realtime/client'
+
+initRealtimeClient({
+  key: 'rwsdk-realtime-demo',
+})
+```
+
+**worker.ts**
+```ts
+import { Document } from '@/app/Document'
+import { Home } from '@/app/pages/Home'
+
+import { defineApp } from 'rwsdk/worker'
+import { index, render, route } from 'rwsdk/router'
+import { time } from '@/lib/utils'
+
+import { realtimeRoute, renderRealtimeClients } from 'rwsdk/realtime/worker'
+import { env } from 'cloudflare:workers'
+export { RealtimeDurableObject } from 'rwsdk/realtime/durableObject'
+
+async function bump() {
+  await renderRealtimeClients({
+    durableObjectNamespace: env.REALTIME_DURABLE_OBJECT,
+    key: 'rwsdk-realtime-demo'
+  })
+  return new Response(time())
+}
+
+export default defineApp([
+  realtimeRoute(() => env.REALTIME_DURABLE_OBJECT),
+  render(Document, [index([Home])]),
+  route('/api/time', () => new Response(time())),
+  route('/api/bump', bump)
+])
 ```
 
 ### time()
