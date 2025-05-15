@@ -9,7 +9,6 @@
     "build": "RWSDK_DEPLOY=1 vite build",
     "preview": "vite preview",
     "ship": "wrangler deploy",
-    "ship-version": "wrangler versions upload",
     "types": "wrangler types --include-runtime false"
   },
   "dependencies": {
