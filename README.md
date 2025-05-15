@@ -55,7 +55,7 @@ export function ClientTimeButton() {
 ### serverTime()
 This is a RSC server function.
 
-NOTE: `'use server'` makes serverTime() callable via XHR fetch from the client.
+NOTE: `'use server'` makes serverTime() callable from the client via fetch or realtime.
 ```ts
 import { time } from '@/lib/utils'
 
