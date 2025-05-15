@@ -3,7 +3,7 @@ First steps using React Server Components with [RedwoodSDK](https://rwsdk.com/).
 
 #### Deployed at https://redwood-minimal-rsc.jldec.workers.dev/
 
-[<img width="449" alt="Screenshot 2025-05-12 at 14 07 27" src="https://github.com/user-attachments/assets/aa9aba9f-1fc7-49e7-a23c-8c55afbad65c" />](https://redwood-minimal-rsc.jldec.workers.dev/)
+<img width="450" alt="Screenshot 2025-05-15 at 16 12 49" src="https://github.com/user-attachments/assets/3bee5dca-ecbd-48e3-b256-910abb8972c9" />
 
 ### Clock
 Live-updating clock rendered on the client.
@@ -147,8 +147,7 @@ export function BumpServerButton() {
 ```
 
 ### Realtime RSC updates
-Add RedwoodSDK support for realtime updates using Cloudflare Durable Objects and WebSockets. See https://docs.rwsdk.com/core/realtime/
-
+RedwoodSDK supports realtime updates using Cloudflare Durable Objects and WebSockets. See https://docs.rwsdk.com/core/realtime/
 
 **client.tsx**
 ```tsx
