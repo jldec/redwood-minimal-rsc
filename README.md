@@ -118,36 +118,10 @@ export async function ServerTime() {
 }
 ```
 
-### BumpServerButton
-This button simulates a realtime update from the server by fetching /api/bump.
-
-```tsx
-'use client'
-
-import { useState } from 'react'
-
-export function BumpServerButton() {
-  const [val, setVal] = useState('fetch /api/bump')
-
-  async function handleClick() {
-      const res = await fetch('/api/bump')
-      const text = await res.text()
-      setVal(`fetch /api/bump: ${text}`)
-  }
-
-  return (
-    <button
-      onClick={handleClick}
-      className="border-gray-300 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-xs font-mono"
-    >
-      {val}
-    </button>
-  )
-}
-```
-
 ### Realtime RSC updates
-RedwoodSDK supports realtime updates using Cloudflare Durable Objects and WebSockets. See https://docs.rwsdk.com/core/realtime/
+RedwoodSDK supports realtime updates using Cloudflare Durable Objects and WebSockets.
+
+See https://docs.rwsdk.com/core/realtime/
 
 **client.tsx**
 ```tsx
@@ -185,6 +159,34 @@ export default defineApp([
   route('/api/time', () => new Response(time())),
   route('/api/bump', bump)
 ])
+```
+
+### BumpServerButton
+This button simulates a realtime update from the server by fetching /api/bump.
+
+```tsx
+'use client'
+
+import { useState } from 'react'
+
+export function BumpServerButton() {
+  const [val, setVal] = useState('Trigger realtime update')
+
+  async function handleClick() {
+      const res = await fetch('/api/bump')
+      const text = await res.text()
+      setVal(`fetch /api/bump: ${text}`)
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      className="border-gray-300 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-xs font-mono"
+    >
+      {val}
+    </button>
+  )
+}
 ```
 
 ### time()
