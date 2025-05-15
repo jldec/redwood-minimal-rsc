@@ -2,6 +2,7 @@ import { Clock } from './Clock'
 import { ClientTimeButton } from './ClientTimeButton'
 import { ServerTimeButton } from './ServerTimeButton'
 import { ServerTime } from './ServerTime'
+import { BumpServerButton } from './BumpServerButton'
 
 export function Home() {
   return (
@@ -15,6 +16,7 @@ export function Home() {
       <ServerTimeButton callFetch />
       <ServerTimeButton />
       <ServerTime />
+      <BumpServerButton />
     </div>
   )
 }
