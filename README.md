@@ -85,7 +85,9 @@ export function ServerTimeButton({ callFetch = false }) {
       const text = await res.text()
       setVal(`fetch /api/time: ${text}`)
     } else {
-      setVal(`serverTime(): ${await serverTime()}`)
+      // realtime returns { node, actionResult } object
+      // @ts-ignore
+      setVal(`serverTime(): ${(await serverTime()).actionResult}`)
     }
   }
 
@@ -142,6 +144,19 @@ export function BumpServerButton() {
     </button>
   )
 }
+```
+
+### Realtime RSC updates
+Add RedwoodSDK support for realtime updates using Cloudflare Durable Objects and WebSockets. See https://docs.rwsdk.com/core/realtime/
+
+
+**client.tsx**
+```tsx
+import { initRealtimeClient } from 'rwsdk/realtime/client'
+
+initRealtimeClient({
+  key: 'rwsdk-realtime-demo',
+})
 ```
 
 **worker.ts**
