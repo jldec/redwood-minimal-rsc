@@ -20,7 +20,7 @@ export function ServerTimeButton({ callFetch = false }) {
   return (
     <button
       onClick={handleClick}
-      className="border-amber-500 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-sm font-mono"
+      className="border-amber-500 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-xs font-mono"
     >
       {val}
     </button>

@@ -24,7 +24,7 @@ export function Clock() {
     return () => clearInterval(interval)
   }, [])
 
-  return <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-sm font-mono text-center">{val}</div>
+  return <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">{val}</div>
 }
 ```
 
@@ -45,7 +45,7 @@ export function ClientTimeButton() {
   }
 
   return (
-    <button onClick={handleClick} className="border-blue-500 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-sm font-mono">
+    <button onClick={handleClick} className="border-blue-500 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-xs font-mono">
       {val}
     </button>
   )
@@ -78,7 +78,7 @@ export function ServerTimeButton({ callFetch = false }) {
   return (
     <button
       onClick={handleClick}
-      className="border-amber-500 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-sm font-mono"
+      className="border-amber-500 cursor-pointer hover:translate-y-0.5 border-2 m-1 p-2 rounded-md min-w-xs font-mono"
     >
       {val}
     </button>
@@ -102,7 +102,7 @@ export async function serverTime() {
 
 export async function ServerTime() {
   return (
-    <div className="border-green-500 border-2 m-1 p-2 rounded-md min-w-sm font-mono text-center">
+    <div className="border-green-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">
       {`ServerTime RSC: ${await serverTime()}`}
     </div>
   )
