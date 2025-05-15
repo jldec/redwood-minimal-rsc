@@ -52,6 +52,20 @@ export function ClientTimeButton() {
 }
 ```
 
+### serverTime()
+This is a RSC server function.
+
+NOTE: `'use server'` makes serverTime() callable via XHR fetch from the client.
+```ts
+import { time } from '@/lib/utils'
+
+// server function
+export async function serverTime() {
+  'use server'
+  return time()
+}
+```
+
 ### ServerTimeButton
 Calls server function, or fetches from `/api/time` if the `callFetch` prop is set.
 ```tsx
@@ -59,7 +73,7 @@ Calls server function, or fetches from `/api/time` if the `callFetch` prop is se
 'use client'
 
 import { useState } from 'react'
-import { serverTime } from './ServerTime'
+import { serverTime } from './serverTimeFunction'
 
 export function ServerTimeButton({ callFetch = false }) {
   const label = callFetch ? 'fetch /api/time' : 'Call serverTime() server function'
@@ -89,28 +103,21 @@ export function ServerTimeButton({ callFetch = false }) {
 ### ServerTime
 `ServerTime()` (with uppercase 'S') is a RSC (React Server Component) that displays the time. This is rendered as part of the initial page load, and re-rendered when serverTime() is called by the client.
 
-NOTE: `'use server'` makes serverTime() callable via XHR fetch from the client.
-
 ```tsx
 // src/app/pages/ServerTime.tsx
 import { time } from '@/lib/utils'
 
-export async function serverTime() {
-  'use server'
-  return time()
-}
-
 export async function ServerTime() {
   return (
     <div className="border-green-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">
-      {`ServerTime RSC: ${await serverTime()}`}
+      {`ServerTime RSC: ${await time()}`}
     </div>
   )
 }
 ```
 
-**Shared Utility:**
-Components share the time function to get the formatted time.
+### time()
+Components share the time() function to get the formatted time.
 ```ts
 // src/lib/utils.ts
 export function formatTime(d: Date) {

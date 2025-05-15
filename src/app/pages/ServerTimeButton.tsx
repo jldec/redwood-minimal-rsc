@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { serverTime } from './ServerTime'
+import { serverTime } from './serverTimeFunction'
 
 export function ServerTimeButton({ callFetch = false }) {
   const label = callFetch ? 'fetch /api/time' : 'Call serverTime() server function'
