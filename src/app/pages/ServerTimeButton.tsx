@@ -13,7 +13,9 @@ export function ServerTimeButton({ callFetch = false }) {
       const text = await res.text()
       setVal(`fetch /api/time: ${text}`)
     } else {
-      setVal(`serverTime(): ${await serverTime()}`)
+      // realtime returns { node, actionResult } object
+      // @ts-ignore
+      setVal(`serverTime(): ${(await serverTime()).actionResult}`)
     }
   }
 
