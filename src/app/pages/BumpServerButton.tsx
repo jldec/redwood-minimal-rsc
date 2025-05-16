@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 export function BumpServerButton() {
-  const [val, setVal] = useState('Trigger realtime update')
+  const [val, setVal] = useState('Cross-client realtime update')
 
   async function handleClick() {
       const res = await fetch('/api/bump')
