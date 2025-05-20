@@ -17,6 +17,7 @@ import { time } from '@/lib/utils'
 import { useState, useEffect } from 'react'
 
 export function Clock() {
+  console.log('Clock')
   const [val, setVal] = useState('Clock')
 
   useEffect(() => {
@@ -26,7 +27,9 @@ export function Clock() {
     return () => clearInterval(interval)
   }, [])
 
-  return <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">{val}</div>
+  return <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">
+    {val}
+  </div>
 }
 ```
 
@@ -40,9 +43,11 @@ import { useState } from 'react'
 import { time } from '@/lib/utils'
 
 export function ClientTimeButton() {
+  console.log('ClientTimeButton')
   const [val, setVal] = useState('Call time() in client')
 
   function handleClick() {
+    console.log('ClientTimeButton clicked - calling time()')
     setVal(`ClientTimeButton: ${time()}`)
   }
 
@@ -59,11 +64,12 @@ This is a RSC server function.
 
 NOTE: `'use server'` makes serverTime() callable from the client via fetch or realtime.
 ```ts
+// src/app/pages/serverTimeFunction.ts
 import { time } from '@/lib/utils'
 
-// server function
 export async function serverTime() {
   'use server'
+  console.log('serverTime server function')
   return time()
 }
 ```
@@ -71,21 +77,25 @@ export async function serverTime() {
 ### ServerTimeButton
 Calls server function, or fetches from `/api/time` if the `callFetch` prop is set.
 ```tsx
+// src/app/pages/ServerTimeButton.tsx
 'use client'
 
 import { useState } from 'react'
 import { serverTime } from './serverTimeFunction'
 
 export function ServerTimeButton({ callFetch = false }) {
+  console.log(`ServerTimeButton (callFetch: ${callFetch})`)
   const label = callFetch ? 'fetch /api/time' : 'Call serverTime() server function'
   const [val, setVal] = useState(label)
 
   async function handleClick() {
     if (callFetch) {
+      console.log('ServerTimeButton clicked - calling /api/time')
       const res = await fetch('/api/time')
       const text = await res.text()
       setVal(`fetch /api/time: ${text}`)
     } else {
+      console.log('ServerTimeButton clicked - calling serverTime() server function')
       setVal(`serverTime(): ${await serverTime()}`)
     }
   }
@@ -109,9 +119,10 @@ export function ServerTimeButton({ callFetch = false }) {
 import { time } from '@/lib/utils'
 
 export async function ServerTime() {
+  console.log('ServerTime RSC')
   return (
     <div className="border-green-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">
-      {`ServerTime RSC: ${await time()}`}
+      {`ServerTime RSC: ${time()}`}
     </div>
   )
 }
@@ -124,6 +135,7 @@ See https://docs.rwsdk.com/core/realtime/
 
 **client.tsx**
 ```tsx
+// src/client.tsx
 import { initRealtimeClient } from 'rwsdk/realtime/client'
 
 initRealtimeClient({
@@ -133,6 +145,7 @@ initRealtimeClient({
 
 **worker.ts**
 ```ts
+// src/worker.ts
 import { Document } from '@/app/Document'
 import { Home } from '@/app/pages/Home'
 
@@ -144,7 +157,8 @@ import { realtimeRoute, renderRealtimeClients } from 'rwsdk/realtime/worker'
 import { env } from 'cloudflare:workers'
 export { RealtimeDurableObject } from 'rwsdk/realtime/durableObject'
 
-async function bump() {
+async function handleBump() {
+  console.log('handle /api/bump')
   await renderRealtimeClients({
     durableObjectNamespace: env.REALTIME_DURABLE_OBJECT,
     key: 'rwsdk-realtime-demo'
@@ -152,11 +166,16 @@ async function bump() {
   return new Response(time())
 }
 
+async function handleTime() {
+  console.log('handle /api/time')
+  return new Response(time())
+}
+
 export default defineApp([
   realtimeRoute(() => env.REALTIME_DURABLE_OBJECT),
   render(Document, [index([Home])]),
-  route('/api/time', () => new Response(time())),
-  route('/api/bump', bump)
+  route('/api/time', handleTime),
+  route('/api/bump', handleBump)
 ])
 ```
 
@@ -164,14 +183,17 @@ export default defineApp([
 This button simulates a realtime update from the server by fetching /api/bump.
 
 ```tsx
+// src/app/pages/BumpServerButton.tsx
 'use client'
 
 import { useState } from 'react'
 
 export function BumpServerButton() {
+  console.log('BumpServerButton')
   const [val, setVal] = useState('Cross-client realtime update')
 
   async function handleClick() {
+    console.log('BumpServerButton clicked - calling /api/bump')
       const res = await fetch('/api/bump')
       const text = await res.text()
       setVal(`fetch /api/bump: ${text}`)
