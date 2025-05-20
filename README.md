@@ -1,6 +1,8 @@
 # RedwoodSDK minimal RSC demo
 First steps using React Server Components with [RedwoodSDK](https://rwsdk.com/).
 
+Triggering the `serverTime()` server function or bumping `renderRealtimeClients()` will update all RSCs on the page. See [discord thread](https://discord.com/channels/679514959968993311/1371525865690632222) for discussion about why.
+
 #### Deployed at https://redwood-minimal-rsc.jldec.workers.dev/
 
 [<img width="365" alt="Screenshot 2025-05-15 at 16 30 46" src="https://github.com/user-attachments/assets/4dbff635-a735-4a0a-94f4-d7a6925973b2" />](https://redwood-minimal-rsc.jldec.workers.dev/)

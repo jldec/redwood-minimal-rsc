@@ -9,7 +9,8 @@ import { realtimeRoute, renderRealtimeClients } from 'rwsdk/realtime/worker'
 import { env } from 'cloudflare:workers'
 export { RealtimeDurableObject } from 'rwsdk/realtime/durableObject'
 
-async function bump() {
+async function handleBump() {
+  console.log('handle /api/bump')
   await renderRealtimeClients({
     durableObjectNamespace: env.REALTIME_DURABLE_OBJECT,
     key: 'rwsdk-realtime-demo'
@@ -17,9 +18,14 @@ async function bump() {
   return new Response(time())
 }
 
+async function handleTime() {
+  console.log('handle /api/time')
+  return new Response(time())
+}
+
 export default defineApp([
   realtimeRoute(() => env.REALTIME_DURABLE_OBJECT),
   render(Document, [index([Home])]),
-  route('/api/time', () => new Response(time())),
-  route('/api/bump', bump)
+  route('/api/time', handleTime),
+  route('/api/bump', handleBump)
 ])
