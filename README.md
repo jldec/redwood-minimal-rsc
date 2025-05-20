@@ -7,6 +7,37 @@ Triggering the `serverTime()` server function or bumping `renderRealtimeClients(
 
 <img width="436" alt="Screenshot 2025-05-20 at 15 02 00" src="https://github.com/user-attachments/assets/4c3867bd-86f5-48e3-a43a-35de11cd2ea3" />
 
+### Home
+```tsx
+// src/app/pages/Home.tsx
+import { Clock } from './Clock'
+import { ClientTimeButton } from './ClientTimeButton'
+import { ServerTimeButton } from './ServerTimeButton'
+import { ServerTime } from './ServerTime'
+import { BumpServerButton } from './BumpServerButton'
+
+export function Home() {
+  console.log('Home RSC')
+  return (
+    <div className="flex flex-col items-center min-h-screen text-sm">
+      <h1 className="text-xl font-bold my-2">RedwoodSDK minimal RSC demo</h1>
+      <a
+        href="https://github.com/jldec/redwood-minimal-rsc#readme"
+        className="text-blue-600 p-2 underline mb-8 text-base"
+      >
+        github.com/jldec/redwood-minimal-rsc
+      </a>
+      <Clock />
+      <ClientTimeButton />
+      <ServerTimeButton callFetch />
+      <ServerTimeButton />
+      <ServerTime />
+      <BumpServerButton />
+    </div>
+  )
+}
+```
+
 ### Clock
 Live-updating clock rendered on the client.
 ```tsx
