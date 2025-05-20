@@ -14,7 +14,9 @@ export function Clock() {
     return () => clearInterval(interval)
   }, [])
 
-  return <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">
-    {val}
-  </div>
+  return (
+    <div className="border-purple-500 border-2 m-1 p-2 rounded-md min-w-xs font-mono text-center">
+      {val}
+    </div>
+  )
 }
