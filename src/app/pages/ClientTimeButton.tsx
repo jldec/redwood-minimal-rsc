@@ -4,9 +4,11 @@ import { useState } from 'react'
 import { time } from '@/lib/utils'
 
 export function ClientTimeButton() {
+  console.log('ClientTimeButton')
   const [val, setVal] = useState('Call time() in client')
 
   function handleClick() {
+    console.log('ClientTimeButton clicked - calling time()')
     setVal(`ClientTimeButton: ${time()}`)
   }
 

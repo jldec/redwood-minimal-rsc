@@ -2,7 +2,9 @@ import styles from "./styles.css?url";
 
 export const Document: React.FC<{ children: React.ReactNode }> = ({
   children,
-}) => (
+}) => {
+  console.log('Document RSC')
+  return (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -17,4 +19,4 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
       <script>import("/src/client.tsx")</script>
     </body>
   </html>
-);
+)};
