@@ -1,4 +1,4 @@
-import { time } from '@/lib/utils'
+import { time } from './utils'
 
 export async function serverTime() {
   'use server'
