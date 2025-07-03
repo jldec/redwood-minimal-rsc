@@ -12,18 +12,18 @@
     "types": "wrangler types --include-runtime false"
   },
   "dependencies": {
-    "rwsdk": "0.0.85"
+    "rwsdk": "0.1.9"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250522.0",
-    "@tailwindcss/vite": "^4.1.7",
-    "@types/node": "^22.15.21",
-    "@types/react": "^19.1.5",
-    "@types/react-dom": "^19.1.5",
-    "tailwindcss": "^4.1.7",
+    "@cloudflare/workers-types": "^4.20250703.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/node": "^24.0.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "wrangler": "^4.16.1"
+    "wrangler": "^4.23.0"
   },
   "prettier": {
     "printWidth": 120,
